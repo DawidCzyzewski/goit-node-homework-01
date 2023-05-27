@@ -7,8 +7,6 @@ function listContacts() {
   try {
     const contactsData = fs.readFileSync(contactsPath, "utf-8");
     const contactsParsed = JSON.parse(contactsData);
-    // console.log(contactsParsed);
-
     console.table(contactsParsed);
     return contactsParsed;
   } catch (error) {
@@ -23,8 +21,6 @@ function getContactById(contactId) {
 
     const contact = contacts.filter((contact) => contact.id === contactId);
     console.log("found contact: ", contact);
-    // console.table(contacts);
-
     return contact;
   } catch (error) {
     console.log("something gone wrong: ", error);
@@ -39,13 +35,11 @@ function removeContact(contactId) {
     const filteredContacts = contacts.filter(
       (contact) => contact.id !== contactId
     );
-    // console.log(filteredContacts);
     const filteredContactsStringified = JSON.stringify(
       filteredContacts,
       null,
       2
     );
-    // console.log(filteredContactsStringified);
     fs.writeFileSync(contactsPath, filteredContactsStringified);
     listContacts();
     return filteredContactsStringified;
