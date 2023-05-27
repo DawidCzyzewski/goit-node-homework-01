@@ -35,11 +35,7 @@ function removeContact(contactId) {
     const filteredContacts = contacts.filter(
       (contact) => contact.id !== contactId
     );
-    const filteredContactsStringified = JSON.stringify(
-      filteredContacts,
-      null,
-      2
-    );
+    const filteredContactsStringified = JSON.stringify(filteredContacts);
     fs.writeFileSync(contactsPath, filteredContactsStringified);
     listContacts();
     return filteredContactsStringified;
@@ -60,7 +56,7 @@ function addContact(name, email, phone) {
       phone,
     };
     contacts.push(newContact);
-    const contactsStringified = JSON.stringify(contacts, null, 2);
+    const contactsStringified = JSON.stringify(contacts);
     fs.writeFileSync(contactsPath, contactsStringified);
     listContacts();
     return newContact;
